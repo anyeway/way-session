@@ -32,6 +32,24 @@
 
 [多账号切换][1]
 
+```
+@Configuration
+@EnableRedisHttpSession
+public class Config {
+
+	@Bean
+	public JedisConnectionFactory connectionFactory() {
+		JedisConnectionFactory factory = new JedisConnectionFactory();
+		factory.setHostName("192.168.230.53");
+		factory.setPort(6379);
+		factory.setPassword("");
+		factory.setDatabase(159);
+		return factory; // <2>
+	}
+}
+
+```
+
 ---
 ###与boot结合的例子
 
