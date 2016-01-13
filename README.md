@@ -23,3 +23,58 @@
 > * 多级别的安全预览
 > * 当使用Web Socket的时候保持登录状态
 > * 非Web请求访问Session数据
+
+---
+
+##Setup
+
+###与httpSession结合
+
+[多账号切换][1]
+
+---
+###与boot结合的例子
+
+ - Updating Dependencies
+
+```
+<dependencies>
+        <!-- ... -->
+
+        <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session</artifactId>
+                <version>1.0.2.RELEASE</version>
+        </dependency>
+        <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+</dependencies>
+```
+ - Spring Configuration
+```
+@EnableRedisHttpSession 
+public class HttpSessionConfig { }
+
+The @EnableRedisHttpSession annotation creates a Spring Bean with the name of springSessionRepositoryFilter that implements Filter. The filter is what is in charge of replacing the HttpSession implementation to be backed by Spring Session. In this instance Spring Session is backed by Redis.
+```
+ - Configuring the Redis Connection
+
+src/main/resources/application.properties
+```
+spring.redis.host=192.168.230.53
+spring.redis.password=
+spring.redis.port=6379
+spring.redis.database=159
+```
+ - Servlet Container Initialization
+
+
+ - boot Sample Application
+ >*  Running the boot Sample Application
+ >* Exploring the security Sample Application
+ >* How does it work?
+
+
+  [1]: http://docs.spring.io/spring-session/docs/current/reference/html5/guides/users.html
